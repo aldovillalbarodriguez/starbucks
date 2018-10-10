@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="MySuiteStarbucks" >
+
+	<!-- <parameter name = "browser" value="fireFox" />  -->
+	
+	<test name="MyTestStarbucks">
+		<classes>
+		
+		<class name="com.automation.starbucks.tests.StarBucksTests"></class>
+						
+		</classes>
+		
+
+	
+	</test>
+</suite>
