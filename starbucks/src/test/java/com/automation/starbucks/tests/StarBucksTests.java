@@ -12,14 +12,13 @@ import org.testng.annotations.Test;
 
 import com.automation.starbucks.pages.StarbucksHomePage;
 import com.automation.starbucks.pages.StarbucksPerfectCoffeePage;
+import com.automation.starbucks.pages.StarbucksSignInPage;
 
 public class StarBucksTests extends BaseTests {
 	
 	@Test
 	public void testStarBucks() {
-		
 		System.out.println("0.- entrando tests");
-		
 		StarbucksHomePage starbucksMenu = getStarbucksPage();
 		
 		List<String> menusEsperados = new ArrayList<>();
@@ -31,7 +30,6 @@ public class StarBucksTests extends BaseTests {
 		menusEsperados.add("STARBUCKS REWARDS");
 		menusEsperados.add("BLOG");
 		menusEsperados.add("GIFT CARDS");
-				
 		
 		List<String> todosMenus = starbucksMenu.mostrarMenu();
 		
@@ -74,6 +72,17 @@ public class StarBucksTests extends BaseTests {
 	public Object[][] testAllAnswers() {
 				
 		return new Object[][] {{ 0 }, { 1 },{ 2 }}; 
+	}
+	
+	@Test()
+	public void giftCarts() {
+		System.out.println("2.- entró al giftCarts");
+		StarbucksHomePage starbucksMenu = getStarbucksPage();
+		StarbucksSignInPage starbucksSignInPage = starbucksMenu.signIn();
+		
+		starbucksSignInPage.getSignIn();
+		
+		System.out.println("2.- finalizó al giftCarts");
 	}
 	
 }

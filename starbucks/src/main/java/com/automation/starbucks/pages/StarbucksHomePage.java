@@ -40,6 +40,11 @@ public class StarbucksHomePage extends BasePage {
 	 */
 	private WebElement subMenuPerfectCoffee;
 	
+	/**
+	 * Var to object to signIn 
+	 */
+	@FindBy(id="signIn")
+	private WebElement signIn;
 	
 	/**
 	 * Metodo para poder revisar las opciones del menu principal
@@ -82,21 +87,22 @@ public class StarbucksHomePage extends BasePage {
 				}
 			}
 			
-			
-			
 			subMenuPerfectCoffee.click();
-			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		
 		return new StarbucksPerfectCoffeePage(getDriver());
-		
 		
 	}
 	
-	
+	public StarbucksSignInPage signIn() {
+		System.out.println("3.- entras a signIn");
+		
+		signIn.click();
+		
+		return new StarbucksSignInPage(getDriver());
+	}
 
 }

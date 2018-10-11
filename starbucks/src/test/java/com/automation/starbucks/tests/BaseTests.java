@@ -10,13 +10,15 @@ import org.testng.annotations.Parameters;
 import com.automation.starbucks.MyDriver;
 import com.automation.starbucks.pages.StarbucksHomePage;
 import com.automation.starbucks.pages.StarbucksPerfectCoffeePage;
+import com.automation.starbucks.pages.StarbucksSignInPage;
 
 public class BaseTests {
 	
 	MyDriver myDriver;
 	
 	private StarbucksHomePage starbucksHome;
-	private StarbucksPerfectCoffeePage PerfecCoffePage;
+	private StarbucksPerfectCoffeePage perfecCoffePage;
+	private StarbucksSignInPage singInPage;
 	
 	@BeforeMethod (alwaysRun = true)
 	public void beforeSuite() {
@@ -30,7 +32,7 @@ public class BaseTests {
 	@AfterMethod(alwaysRun = true)
 	public void afterSuite() {
 		
-		starbucksHome.dispose();
+		//starbucksHome.dispose();
 	}
 	
 	public StarbucksHomePage getStarbucksPage () {
@@ -39,7 +41,11 @@ public class BaseTests {
 	}
 	
 	public StarbucksPerfectCoffeePage getPefectCoffePage() {
-		return PerfecCoffePage;
+		return perfecCoffePage;
+	}
+	
+	public StarbucksSignInPage getSignInPage() {
+		return singInPage;
 	}
 
 }
