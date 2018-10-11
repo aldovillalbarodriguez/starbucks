@@ -24,12 +24,12 @@ public class BaseTests {
 		
 		
 	}
-	@BeforeClass (alwaysRun = true)
-	public void beforeClass() {
-		myDriver = new MyDriver();
-		starbucksHome = new StarbucksHomePage(myDriver.getDriver());
-		
-	}
+//	@BeforeClass (alwaysRun = true)
+//	public void beforeClass() {
+//		myDriver = new MyDriver();
+//		starbucksHome = new StarbucksHomePage(myDriver.getDriver());
+//		
+//	}
 	@AfterSuite(alwaysRun = true)
 	public void afterSuite() {
 		
