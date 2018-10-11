@@ -84,7 +84,7 @@ public class StarbucksPerfectCoffeePage extends BasePage {
 		String respuesta = "";
 			
 		try {
-			System.out.println("respuesta>>"+numRespuesta);
+			
 			List<String> respuestas = new ArrayList<>();
 			respuestas.add(this.clikeaRepuesta(answerQuestion1, numRespuesta));
 			respuestas.add(this.clikeaRepuesta(answerQuestion2, numRespuesta));
