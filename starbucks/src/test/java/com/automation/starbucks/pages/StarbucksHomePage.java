@@ -48,11 +48,9 @@ public class StarbucksHomePage extends BasePage {
 	 */
 	public List<String> mostrarMenu() {
 		List<String> todosMenus = new ArrayList<>();
-		if(getDriver()==null) {
-			new StarbucksHomePage(getDriver());
-		}
+
 		for(WebElement menu: listaMenu) {
-			System.out.println("muestrame de nuevo el menú>>>"+ menu.getText());
+			
 			todosMenus.add(menu.getText());
 		}
 		return todosMenus;
@@ -80,6 +78,7 @@ public class StarbucksHomePage extends BasePage {
 			for(WebElement subMenu:menuDesplegableCoffee) {
 				if(subMenu.getText().equalsIgnoreCase("Find Your Perfect Coffee")) {
 					subMenuPerfectCoffee = subMenu;
+					break;
 				}
 			}
 			

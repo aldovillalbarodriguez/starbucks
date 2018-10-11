@@ -15,19 +15,57 @@ public class StarbucksPerfectCoffeePage extends BasePage {
 		super(driver);
 		urlPage = driver.getCurrentUrl();
 	}
-	
+	/**
+	 * Lista de objetos de tipo respuestas para la pregunta 1
+	 * 
+	 */
 	@FindBy(css="#question1 > button")
 	private List<WebElement> answerQuestion1;
+	/**
+	 * Lista de objetos de tipo respuestas para la pregunta 2
+	 * 
+	 */
 	
 	@FindBy(css="#question2 > button")
 	private List<WebElement> answerQuestion2;
 	
+	/**
+	 * Lista de objetos de tipo respuestas para la pregunta 3
+	 * 
+	 */
+	
 	@FindBy(css="#light-questions > button")
 	private List<WebElement> answerQuestion3;
 	
+	/**
+	 * Lista de objetos de tipo respuestas para la pregunta 4
+	 * 
+	 */
+	
 	@FindBy(css="#question4 > button")
 	private List<WebElement> answerQuestion4;
+	
+	/**
+	 * Lista de objetos de tipo respuestas para la pregunta 5
+	 * 
+	 */
 
+	@FindBy(css="#medium-questions > button")
+	private List<WebElement> answerQuestion5;
+	
+	/**
+	 * Lista de objetos de tipo respuestas para la pregunta 4
+	 * 
+	 */
+	
+	@FindBy(css="#dark-questions > button")
+	private List<WebElement> answerQuestion6;
+	
+	/**
+	 * Objeto para definir el boton para mostra el cafe Perfecto
+	 * 
+	 */
+	
 	@FindBy(id="find-my-coffee")
 	private WebElement botonFindMyCoffee;
 	
@@ -36,23 +74,37 @@ public class StarbucksPerfectCoffeePage extends BasePage {
 	public String getUrlPage () {
 		return urlPage;
 	}
-	
-	public String questionPerfectCoffePage() {
+	/**
+	 * Metodo que sirve para responder las preguntas y encontrar el perfect coffee
+	 * el parametro numRespuesta sirve para elegir las combinaciones posibles
+	 * @param numRespuesta
+	 * @return
+	 */
+	public String questionPerfectCoffePage(Integer numRespuesta) {
 		String respuesta = "";
-		
-	
-		try {
-			List<String> respuestas = new ArrayList<>();
-			respuestas.add(this.clikeaRepuesta(answerQuestion1, 0));
-			respuestas.add(this.clikeaRepuesta(answerQuestion2, 0));
-			respuestas.add(this.clikeaRepuesta(answerQuestion3, 0));
-			respuestas.add(this.clikeaRepuesta(answerQuestion4, 0));
 			
-			for(String verResp:respuestas ) {
-				
-				System.out.println("Verifica la respuesta es>>>"+verResp);
-				
+		try {
+			System.out.println("respuesta>>"+numRespuesta);
+			List<String> respuestas = new ArrayList<>();
+			respuestas.add(this.clikeaRepuesta(answerQuestion1, numRespuesta));
+			respuestas.add(this.clikeaRepuesta(answerQuestion2, numRespuesta));
+			
+			switch (numRespuesta) {
+			case 0:
+				respuestas.add(this.clikeaRepuesta(answerQuestion3, numRespuesta));
+				break;
+			case 1:	
+				respuestas.add(this.clikeaRepuesta(answerQuestion5, numRespuesta));
+				break;
+			case 2:
+				respuestas.add(this.clikeaRepuesta(answerQuestion6, numRespuesta));
+				break;
+
+			default:
+				break;
 			}
+			
+			respuestas.add(this.clikeaRepuesta(answerQuestion4, numRespuesta));
 			
 			getWait().until(ExpectedConditions.elementToBeClickable(botonFindMyCoffee));
 			
@@ -69,16 +121,31 @@ public class StarbucksPerfectCoffeePage extends BasePage {
 		
 	}
 	
+	
+	/**
+	 * Método que realiza 
+	 * @param listaRepuestas
+	 * @param numRepuesta
+	 * @return
+	 */
 	public String clikeaRepuesta(List<WebElement> listaRepuestas, Integer numRepuesta ) {
-		
 	
 		WebElement objetoRepuesta = null;
-		getWait().until(ExpectedConditions.visibilityOfAllElements(listaRepuestas));
-		objetoRepuesta = listaRepuestas.get(numRepuesta);
-		objetoRepuesta.click();
+		
+		try {
+			
+			getWait().until(ExpectedConditions.visibilityOfAllElements(listaRepuestas));
+			objetoRepuesta = listaRepuestas.get(numRepuesta);
+			
+			getWait().until(ExpectedConditions.elementToBeClickable(objetoRepuesta));
+			objetoRepuesta.click();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		return listaRepuestas.get(numRepuesta).getText();
 		
 	}
-	
+
 
 }

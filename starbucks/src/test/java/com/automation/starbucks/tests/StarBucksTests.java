@@ -1,5 +1,6 @@
 package com.automation.starbucks.tests;
 
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
 
@@ -35,11 +36,7 @@ public class StarBucksTests extends BaseTests {
 		List<String> todosMenus = starbucksMenu.mostrarMenu();
 		
 		try {
-		
-				
-				Assert.assertEquals(todosMenus, menusEsperados);
-				
-				
+				Assert.assertEquals(todosMenus, menusEsperados);				
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -49,8 +46,8 @@ public class StarBucksTests extends BaseTests {
 		
 	}
 	
-	@Test
-	public void testFindPerfecCoffee () {
+	@Test(dataProvider="testAllAnswers")
+	public void testFindPerfecCoffee (Integer numRespuesta) {
 		System.out.println("1.- entró al StarbucksPerfectCoffeePage");
 		StarbucksHomePage starbucksMenu = getStarbucksPage();
 		StarbucksPerfectCoffeePage perfectCoffee= null;
@@ -58,9 +55,9 @@ public class StarBucksTests extends BaseTests {
 		try {
 			String urlEsperada = "https://athome.starbucks.com/coffee-finder/";
 			
-			System.out.println("un paso antes de llegar a conseguir el café perfecto");
 			perfectCoffee = starbucksMenu.gerPefectCoffee();
-			nombreUrl = perfectCoffee.questionPerfectCoffePage();
+			
+			nombreUrl = perfectCoffee.questionPerfectCoffePage(numRespuesta);
 			 
 			Assert.assertEquals(urlEsperada, nombreUrl);
 			
@@ -72,5 +69,11 @@ public class StarBucksTests extends BaseTests {
 		
 			
 	}
-
+	
+	@DataProvider(name="testAllAnswers")
+	public Object[][] testAllAnswers() {
+				
+		return new Object[][] {{ 0 }, { 1 },{ 2 }}; 
+	}
+	
 }
