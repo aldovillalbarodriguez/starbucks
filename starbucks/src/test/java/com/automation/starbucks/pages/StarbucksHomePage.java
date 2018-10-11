@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class StarbucksHomePage extends BasePage {
 
@@ -17,38 +18,82 @@ public class StarbucksHomePage extends BasePage {
 		
 		driver.get("https://www.starbucks.com");
 	}
-	
+	/**
+	 * Variable para poder ver todo el menú principal de la pagina de starbucks
+	 */
 	@FindBy(css="#nav > div.nav_menu > ul > li")
 	private List<WebElement> listaMenu;
 	
-	
+	/**
+	 * Variable para poder elegir el menu de Coffee
+	 */
 	private WebElement menuCoffe;
+	/**
+	 * Variable para poder revisar el subMenu desplegable de coffee
+	 */
+	@FindBy(css="#menu_coffee > div.region.size4of5.menu_content > ol > li") 
+	private List<WebElement> menuDesplegableCoffee;
+	
+	/**
+	 * variable para poder ver el submenu y poder elegir el cafe perfecto
+	 * 
+	 */
+	private WebElement subMenuPerfectCoffee;
 	
 	
+	/**
+	 * Metodo para poder revisar las opciones del menu principal
+	 * del home de starbucks
+	 * @return
+	 */
 	public List<String> mostrarMenu() {
 		List<String> todosMenus = new ArrayList<>();
+		if(getDriver()==null) {
+			new StarbucksHomePage(getDriver());
+		}
 		for(WebElement menu: listaMenu) {
+			System.out.println("muestrame de nuevo el menú>>>"+ menu.getText());
 			todosMenus.add(menu.getText());
 		}
 		return todosMenus;
 	}
 	
+	/**
+	 * Metodo que utiliza para poder llegar a la pagina 
+	 * para elegir tu perfect coffee
+	 * @return
+	 */
 	public StarbucksPerfectCoffeePage gerPefectCoffee() {
-		
-		StarbucksPerfectCoffeePage pefectCoffeePage = new StarbucksPerfectCoffeePage(getDriver());
-	
-		
-		for(WebElement menu: listaMenu) {
-			if(menu.getText().equalsIgnoreCase("COFFEE"))
-			{
-				menuCoffe = menu;
-				break;
+			
+		try {
+			for(WebElement menu: listaMenu) {
+				if(menu.getText().equalsIgnoreCase("COFFEE"))
+				{
+					menuCoffe = menu;
+					break;
+				}
 			}
+			menuCoffe.click();
+			
+			getWait().until(ExpectedConditions.visibilityOfAllElements(menuDesplegableCoffee));
+			
+			for(WebElement subMenu:menuDesplegableCoffee) {
+				if(subMenu.getText().equalsIgnoreCase("Find Your Perfect Coffee")) {
+					subMenuPerfectCoffee = subMenu;
+				}
+			}
+			
+			
+			
+			subMenuPerfectCoffee.click();
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		
-		menuCoffe.click();
 		
-		return pefectCoffeePage;
+		return new StarbucksPerfectCoffeePage(getDriver());
 		
 		
 	}

@@ -10,50 +10,67 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.automation.starbucks.pages.StarbucksHomePage;
+import com.automation.starbucks.pages.StarbucksPerfectCoffeePage;
 
 public class StarBucksTests extends BaseTests {
 	
-//	@Test
-//	public void testStarBucks() {
-//		
-//		System.out.println("0.- entrando tests");
-//		
-//		StarbucksHomePage starbucksMenu = getStarbucksPage();
-//		List<String> menusEsperados = new ArrayList<>();
-//		menusEsperados.add("COFFEE");
-//		menusEsperados.add("TEA");
-//		menusEsperados.add("MENU");
-//		menusEsperados.add("COFFEEHOUSE");
-//		menusEsperados.add("SOCIAL IMPACT");
-//		menusEsperados.add("STARBUCKS REWARDS");
-//		menusEsperados.add("BLOG");
-//		menusEsperados.add("GIFT CARDS");
-//				
-//		
-//		List<String> todosMenus = starbucksMenu.mostrarMenu();
-//		
-//		try {
-//		
-//				
-//				Assert.assertEquals(todosMenus, menusEsperados);
-//				
-//				
-//			
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		
-//		System.out.println("0.- Finalizó correctamente");
-//		
-//	}
+	@Test
+	public void testStarBucks() {
+		
+		System.out.println("0.- entrando tests");
+		
+		StarbucksHomePage starbucksMenu = getStarbucksPage();
+		
+		List<String> menusEsperados = new ArrayList<>();
+		menusEsperados.add("COFFEE");
+		menusEsperados.add("TEA");
+		menusEsperados.add("MENU");
+		menusEsperados.add("COFFEEHOUSE");
+		menusEsperados.add("SOCIAL IMPACT");
+		menusEsperados.add("STARBUCKS REWARDS");
+		menusEsperados.add("BLOG");
+		menusEsperados.add("GIFT CARDS");
+				
+		
+		List<String> todosMenus = starbucksMenu.mostrarMenu();
+		
+		try {
+		
+				
+				Assert.assertEquals(todosMenus, menusEsperados);
+				
+				
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("0.- Finalizó correctamente");
+		
+	}
 	
 	@Test
 	public void testFindPerfecCoffee () {
 		System.out.println("1.- entró al StarbucksPerfectCoffeePage");
 		StarbucksHomePage starbucksMenu = getStarbucksPage();
+		StarbucksPerfectCoffeePage perfectCoffee= null;
+		String nombreUrl="";
+		try {
+			String urlEsperada = "https://athome.starbucks.com/coffee-finder/";
+			
+			System.out.println("un paso antes de llegar a conseguir el café perfecto");
+			perfectCoffee = starbucksMenu.gerPefectCoffee();
+			nombreUrl = perfectCoffee.questionPerfectCoffePage();
+			 
+			Assert.assertEquals(urlEsperada, nombreUrl);
+			
+			System.out.println("1- terminó y la url es?>>>>"+nombreUrl);
 		
-		starbucksMenu.gerPefectCoffee();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
+			
 	}
 
 }
