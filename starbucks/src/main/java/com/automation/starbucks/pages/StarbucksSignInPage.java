@@ -1,11 +1,16 @@
 package com.automation.starbucks.pages;
 
+import java.util.List;
+
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class StarbucksSignInPage extends BasePage {
+	
+	Logger log = Logger.getLogger(StarbucksSignInPage.class);
 
 	public StarbucksSignInPage(WebDriver driver) {
 		super(driver);
@@ -17,17 +22,23 @@ public class StarbucksSignInPage extends BasePage {
 	public WebElement password;
 	@FindBy(xpath="//div[@class='visible']/button[@type='submit']")
 	public WebElement buttonSignIn;
+
 	
-	public String getSignIn() {
-		String sendGift="Send Gift";
-		System.out.println("nos encontramos en StarbucksSignInPage");
+	public StarbucksAppPage getSignIn() {
 		
-		userName.sendKeys("tae.globant.training@gmail.com");
-		password.sendKeys("GlobantTAE_1");
 		
-		getWait().until(ExpectedConditions.elementToBeClickable(buttonSignIn));
-		buttonSignIn.submit();
+		try {
+			userName.sendKeys("tae.globant.training@gmail.com");
+			password.sendKeys("GlobantTAE_1");
+			
+			getWait().until(ExpectedConditions.textToBePresentInElement(buttonSignIn, "Sign in"));
+			buttonSignIn.click();
+			
+		} catch (Exception e) {
+			log.error("error StarbucksSignInPage.getSignIn()",e);
+		}
 		
-		return sendGift;
+				
+		return new StarbucksAppPage (getDriver());
 	}
 }

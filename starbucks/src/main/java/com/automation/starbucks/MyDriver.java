@@ -10,16 +10,13 @@ private WebDriver driver;
 	
 	public MyDriver () {
 		String browser = System.getProperty("browser");
-		
-		System.out.println("El browser es: >>>>"+browser);
-				
+			
 		try {
 			
 			switch (browser) {
 
-
 			case "fireFox":
-				//C:\Users\aldo.villalba\Documents\firefoxdriver
+				
 					System.setProperty("webdriver.gecko.driver", "src\\test\\resources\\drivers\\geckodriver.exe");
 					driver = new FirefoxDriver();
 				
@@ -42,13 +39,10 @@ private WebDriver driver;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
-		
+				
 	}
 
 	public WebDriver getDriver() {
-		
 		return this.driver;
 	}
 	

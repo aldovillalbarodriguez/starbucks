@@ -4,6 +4,7 @@ package com.automation.starbucks.pages;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,6 +13,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class StarbucksHomePage extends BasePage {
 
+	Logger log = Logger.getLogger(StarbucksHomePage.class);
 	public StarbucksHomePage(WebDriver driver) {
 		super(driver);
 		// TODO Auto-generated constructor stub
@@ -69,23 +71,13 @@ public class StarbucksHomePage extends BasePage {
 	public StarbucksPerfectCoffeePage gerPefectCoffee() {
 			
 		try {
-			for(WebElement menu: listaMenu) {
-				if(menu.getText().equalsIgnoreCase("COFFEE"))
-				{
-					menuCoffe = menu;
-					break;
-				}
-			}
+			
+			menuCoffe = getMenu(listaMenu, "COFFEE");
 			menuCoffe.click();
 			
 			getWait().until(ExpectedConditions.visibilityOfAllElements(menuDesplegableCoffee));
 			
-			for(WebElement subMenu:menuDesplegableCoffee) {
-				if(subMenu.getText().equalsIgnoreCase("Find Your Perfect Coffee")) {
-					subMenuPerfectCoffee = subMenu;
-					break;
-				}
-			}
+			subMenuPerfectCoffee = getMenu(menuDesplegableCoffee, "Find Your Perfect Coffee");
 			
 			subMenuPerfectCoffee.click();
 			
@@ -98,7 +90,7 @@ public class StarbucksHomePage extends BasePage {
 	}
 	
 	public StarbucksSignInPage signIn() {
-		System.out.println("3.- entras a signIn");
+		log.info("3.- entras a signIn");
 		
 		signIn.click();
 		

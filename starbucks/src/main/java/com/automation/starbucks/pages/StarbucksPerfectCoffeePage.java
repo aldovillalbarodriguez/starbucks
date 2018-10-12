@@ -16,13 +16,13 @@ public class StarbucksPerfectCoffeePage extends BasePage {
 		urlPage = driver.getCurrentUrl();
 	}
 	/**
-	 * Lista de objetos de tipo respuestas para la pregunta 1
+	 * Answers Object List to question 1
 	 * 
 	 */
 	@FindBy(css="#question1 > button")
 	private List<WebElement> answerQuestion1;
 	/**
-	 * Lista de objetos de tipo respuestas para la pregunta 2
+	 * Answers Object List to question 2
 	 * 
 	 */
 	
@@ -30,7 +30,7 @@ public class StarbucksPerfectCoffeePage extends BasePage {
 	private List<WebElement> answerQuestion2;
 	
 	/**
-	 * Lista de objetos de tipo respuestas para la pregunta 3
+	 * Answers Object List to question 3
 	 * 
 	 */
 	
@@ -38,7 +38,7 @@ public class StarbucksPerfectCoffeePage extends BasePage {
 	private List<WebElement> answerQuestion3;
 	
 	/**
-	 * Lista de objetos de tipo respuestas para la pregunta 4
+	 * Answers Object List to question 4
 	 * 
 	 */
 	
@@ -46,7 +46,7 @@ public class StarbucksPerfectCoffeePage extends BasePage {
 	private List<WebElement> answerQuestion4;
 	
 	/**
-	 * Lista de objetos de tipo respuestas para la pregunta 5
+	 * Answers Object List to question 5
 	 * 
 	 */
 
@@ -54,7 +54,7 @@ public class StarbucksPerfectCoffeePage extends BasePage {
 	private List<WebElement> answerQuestion5;
 	
 	/**
-	 * Lista de objetos de tipo respuestas para la pregunta 4
+	 * Answers Object List to question 6
 	 * 
 	 */
 	
@@ -62,7 +62,7 @@ public class StarbucksPerfectCoffeePage extends BasePage {
 	private List<WebElement> answerQuestion6;
 	
 	/**
-	 * Objeto para definir el boton para mostra el cafe Perfecto
+	 * Object to define find my coffee
 	 * 
 	 */
 	
@@ -70,13 +70,17 @@ public class StarbucksPerfectCoffeePage extends BasePage {
 	private WebElement botonFindMyCoffee;
 	
 	
+	/**
+	 * Method to get the url of page 
+	 * @return
+	 */
 	
 	public String getUrlPage () {
 		return urlPage;
 	}
 	/**
-	 * Metodo que sirve para responder las preguntas y encontrar el perfect coffee
-	 * el parametro numRespuesta sirve para elegir las combinaciones posibles
+	 * Method to get answers and find the perfect coffee the param 
+	 * works to do possible outputs
 	 * @param numRespuesta
 	 * @return
 	 */
@@ -123,7 +127,7 @@ public class StarbucksPerfectCoffeePage extends BasePage {
 	
 	
 	/**
-	 * Método que realiza 
+	 * Method to do click in some number answer
 	 * @param listaRepuestas
 	 * @param numRepuesta
 	 * @return
