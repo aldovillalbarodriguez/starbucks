@@ -55,7 +55,7 @@ public class StarBucksTests extends BaseTests {
 		System.out.println("1.- entró al StarbucksPerfectCoffeePage");
 		StarbucksHomePage starbucksMenu = getStarbucksPage();
 		StarbucksPerfectCoffeePage perfectCoffee= null;
-		String nombreUrl="";
+		String nombreUrl=""; 
 		try { 
 			String urlEsperada = "https://athome.starbucks.com/coffee-finder/";
 			
