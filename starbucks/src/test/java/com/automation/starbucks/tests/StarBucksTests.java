@@ -18,7 +18,7 @@ public class StarBucksTests extends BaseTests {
 	
 	@Test
 	public void testStarBucks() {
-		System.out.println("0.- entrando tests");
+		
 		StarbucksHomePage starbucksMenu = getStarbucksPage();
 		
 		List<String> menusEsperados = new ArrayList<>();
@@ -40,7 +40,7 @@ public class StarBucksTests extends BaseTests {
 			e.printStackTrace();
 		}
 		
-		System.out.println("0.- Finalizó correctamente");
+		
 		
 	}
 	
@@ -59,7 +59,7 @@ public class StarBucksTests extends BaseTests {
 			 
 			Assert.assertEquals(urlEsperada, nombreUrl);
 			
-			System.out.println("1- terminó y la url es?>>>>"+nombreUrl);
+			
 		
 		} catch (Exception e) {
 			e.printStackTrace();

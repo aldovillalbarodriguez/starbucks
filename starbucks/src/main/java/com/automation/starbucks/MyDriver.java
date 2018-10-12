@@ -20,14 +20,14 @@ private WebDriver driver;
 
 			case "fireFox":
 				//C:\Users\aldo.villalba\Documents\firefoxdriver
-					System.setProperty("webdriver.gecko.driver", "C:\\Users\\aldo.villalba\\Documents\\firefoxdriver\\geckodriver.exe");
+					System.setProperty("webdriver.gecko.driver", "src\\test\\resources\\drivers\\geckodriver.exe");
 					driver = new FirefoxDriver();
 				
 				break;
 				
 			case "chrome":
 				
-					System.setProperty("webdriver.chrome.driver", "C:\\Users\\aldo.villalba\\Documents\\chromedriver\\chromedriver.exe");		
+					System.setProperty("webdriver.chrome.driver", "src\\test\\resources\\drivers\\chromedriver.exe");		
 					driver = new ChromeDriver();
 				
 				
