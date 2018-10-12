@@ -50,35 +50,35 @@ public class StarBucksTests extends BaseTests {
 //		
 //	}
 	
-//	@Test(dataProvider="testAllAnswers")
-//	public void testFindPerfecCoffee (Integer numRespuesta) {
-//		System.out.println("1.- entró al StarbucksPerfectCoffeePage");
-//		StarbucksHomePage starbucksMenu = getStarbucksPage();
-//		StarbucksPerfectCoffeePage perfectCoffee= null;
-//		String nombreUrl="";
-//		try {
-//			String urlEsperada = "https://athome.starbucks.com/coffee-finder/";
-//			
-//			perfectCoffee = starbucksMenu.gerPefectCoffee();
-//			
-//			nombreUrl = perfectCoffee.questionPerfectCoffePage(numRespuesta);
-//			 
-//			Assert.assertEquals(urlEsperada, nombreUrl);
-//			
-//			
-//		
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		
-//			
-//	}
-//	
-//	@DataProvider(name="testAllAnswers")
-//	public Object[][] testAllAnswers() {
-//				
-//		return new Object[][] {{ 0 }, { 1 },{ 2 }}; 
-//	}
+	@Test(dataProvider="testAllAnswers")
+	public void testFindPerfecCoffee (Integer numRespuesta) {
+		System.out.println("1.- entró al StarbucksPerfectCoffeePage");
+		StarbucksHomePage starbucksMenu = getStarbucksPage();
+		StarbucksPerfectCoffeePage perfectCoffee= null;
+		String nombreUrl="";
+		try { 
+			String urlEsperada = "https://athome.starbucks.com/coffee-finder/";
+			
+			perfectCoffee = starbucksMenu.gerPefectCoffee();
+			
+			nombreUrl = perfectCoffee.questionPerfectCoffePage(numRespuesta);
+			 
+			Assert.assertEquals(urlEsperada, nombreUrl);
+			
+			
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+			
+	}
+	
+	@DataProvider(name="testAllAnswers")
+	public Object[][] testAllAnswers() {
+				
+		return new Object[][] {{ 0 }, { 1 },{ 2 }}; 
+	}
 	
 	@Test()
 	public void giftCarts() {
