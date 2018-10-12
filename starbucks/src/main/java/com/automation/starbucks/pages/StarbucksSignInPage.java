@@ -26,6 +26,8 @@ public class StarbucksSignInPage extends BasePage {
 		password.sendKeys("GlobantTAE_1");
 		
 		getWait().until(ExpectedConditions.elementToBeClickable(buttonSignIn));
+		buttonSignIn.submit();
+		
 		return sendGift;
 	}
 }
