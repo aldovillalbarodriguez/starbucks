@@ -9,7 +9,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-
+/**
+ * Class of Starbucks App Page
+ * @author aldo.villalba
+ *
+ */
 
 public class StarbucksAppPage extends BasePage{
 	
@@ -20,11 +24,21 @@ public class StarbucksAppPage extends BasePage{
 		
 	}
 	
+	/**
+	 * Object to main Menu of page
+	 */
 	@FindBy(xpath="//ul[@class='whiteSpace-truncate flex-auto sb-navbar-list']/li")
 	public List<WebElement> mainMenu;
 	
+	/**
+	 * Object to one of menu of Main menu
+	 */
 	public WebElement menuGiff;
 	
+	/**
+	 * Method to get the menu "GIFT"
+	 * @return
+	 */
 	public StarbucksGiffPage getPageGiff () {
 		
 		log.info("llegas a getPageGiff ()");

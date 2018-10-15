@@ -3,12 +3,15 @@ package com.automation.starbucks.pages;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class StarbucksPerfectCoffeePage extends BasePage {
+	
+	Logger log = Logger.getLogger(StarbucksPerfectCoffeePage.class);
 	
 	String urlPage="";
 	public StarbucksPerfectCoffeePage(WebDriver driver) {
@@ -84,12 +87,12 @@ public class StarbucksPerfectCoffeePage extends BasePage {
 	 * @param numRespuesta
 	 * @return
 	 */
-	public String questionPerfectCoffePage(Integer numRespuesta) {
-		String respuesta = "";
-			
+	public List<String> questionPerfectCoffePage(Integer numRespuesta) {
+		
+		List<String> respuestas = new ArrayList<>();	
 		try {
 			
-			List<String> respuestas = new ArrayList<>();
+			
 			respuestas.add(this.clikeaRepuesta(answerQuestion1, numRespuesta));
 			respuestas.add(this.clikeaRepuesta(answerQuestion2, numRespuesta));
 			
@@ -114,13 +117,12 @@ public class StarbucksPerfectCoffeePage extends BasePage {
 			
 			botonFindMyCoffee.click();
 			
-			respuesta = getDriver().getCurrentUrl();
 			
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Error StarbucksPerfectCoffeePage.questionPerfectCoffePage(Integer numRespuesta)>",e);
 		}
 		
-		return respuesta;
+		return respuestas;
 		
 		
 	}
@@ -135,6 +137,7 @@ public class StarbucksPerfectCoffeePage extends BasePage {
 	public String clikeaRepuesta(List<WebElement> listaRepuestas, Integer numRepuesta ) {
 	
 		WebElement objetoRepuesta = null;
+		String textAnswer = "";
 		
 		try {
 			
@@ -142,12 +145,13 @@ public class StarbucksPerfectCoffeePage extends BasePage {
 			objetoRepuesta = listaRepuestas.get(numRepuesta);
 			
 			getWait().until(ExpectedConditions.elementToBeClickable(objetoRepuesta));
+			textAnswer = objetoRepuesta.getText();
 			objetoRepuesta.click();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		return listaRepuestas.get(numRepuesta).getText();
+		
+		return textAnswer;
 		
 	}
 

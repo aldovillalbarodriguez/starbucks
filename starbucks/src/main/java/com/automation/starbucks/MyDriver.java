@@ -5,16 +5,19 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class MyDriver {
+/**
+ * Class of driver properties
+ * 
+ */
 
 private WebDriver driver;
-	
+
+	/**
+	 * Method to get driver
+	 */
 	public MyDriver () {
 		String browser = System.getProperty("browser");
-		
 		String os = System.getProperty("os.name").toLowerCase();
-		
-		System.out.println("meustrame el sitema operativo>>"+os);
-		
 		String pipe = System.getProperty("file.separator");
 			
 		try {
@@ -37,10 +40,10 @@ private WebDriver driver;
 			case "chrome":
 				
 					if(os.contains("win")) {
-						System.setProperty("webdriver.gecko.driver", "src"+pipe+"test"+pipe+"resources"+pipe+"drivers"+pipe+"chromedriver.exe");
+						System.setProperty("webdriver.chrome.driver", "src"+pipe+"test"+pipe+"resources"+pipe+"drivers"+pipe+"chromedriver.exe");
 					}
 					if(os.contains("mac")) {
-						System.setProperty("webdriver.gecko.driver", "src"+pipe+"test"+pipe+"resources"+pipe+"drivers"+pipe+"chromedriver");
+						System.setProperty("webdriver.chrome.driver", "src"+pipe+"test"+pipe+"resources"+pipe+"drivers"+pipe+"chromedriver");
 					}	
 					driver = new ChromeDriver();
 				

@@ -1,17 +1,18 @@
 package com.automation.starbucks.tests;
 
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Parameters;
 
 import com.automation.starbucks.MyDriver;
 import com.automation.starbucks.pages.StarbucksHomePage;
 import com.automation.starbucks.pages.StarbucksPerfectCoffeePage;
 import com.automation.starbucks.pages.StarbucksSignInPage;
 
+/**
+ * Class to config of all Tests
+ * @author aldo.villalba
+ *
+ */
 public class BaseTests {
 	
 	MyDriver myDriver;
@@ -32,7 +33,7 @@ public class BaseTests {
 	@AfterMethod(alwaysRun = true)
 	public void afterSuite() {
 		
-		//starbucksHome.dispose();
+		starbucksHome.dispose();
 	}
 	
 	public StarbucksHomePage getStarbucksPage () {

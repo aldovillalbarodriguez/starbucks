@@ -10,6 +10,11 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+/**
+ * Class to get de Driver of Browser
+ * @author aldo.villalba
+ *
+ */
 public class BasePage {
 	
 	Logger log = Logger.getLogger(BasePage.class);
@@ -39,7 +44,12 @@ public class BasePage {
 			driver.quit();
 		}
 	}
-	
+	/**
+	 * Method to get a option of menu 
+	 * @param listMenu. All option of a mainMenu
+	 * @param stringMenu. Text of menu to get 
+	 * @return the webElemento of page
+	 */
 	public WebElement getMenu(List<WebElement> listMenu, String stringMenu) {
 		WebElement menu = null;
 		
@@ -55,6 +65,12 @@ public class BasePage {
 		return menu;
 	}
 	
+	/**
+	 * Method to get a Img of a page of Starbucks
+	 * @param typeFind
+	 * @param stringFind
+	 * @return
+	 */
 	public WebElement getImg(String typeFind, String stringFind) {
 		WebElement img = null;
 		

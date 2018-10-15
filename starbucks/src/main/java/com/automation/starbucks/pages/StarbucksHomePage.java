@@ -11,6 +11,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+/**
+ * Class of home of Starbucks Page
+ * @author aldo.villalba
+ *
+ */
 public class StarbucksHomePage extends BasePage {
 
 	Logger log = Logger.getLogger(StarbucksHomePage.class);
@@ -21,23 +26,23 @@ public class StarbucksHomePage extends BasePage {
 		driver.get("https://www.starbucks.com");
 	}
 	/**
-	 * Variable para poder ver todo el menú principal de la pagina de starbucks
+	 * Param to get the main menu of starbucks page
 	 */
 	@FindBy(css="#nav > div.nav_menu > ul > li")
 	private List<WebElement> listaMenu;
 	
 	/**
-	 * Variable para poder elegir el menu de Coffee
+	 * Param to get one menu of coffee
 	 */
 	private WebElement menuCoffe;
 	/**
-	 * Variable para poder revisar el subMenu desplegable de coffee
+	 * Param to get submenu of coffee
 	 */
 	@FindBy(css="#menu_coffee > div.region.size4of5.menu_content > ol > li") 
 	private List<WebElement> menuDesplegableCoffee;
 	
 	/**
-	 * variable para poder ver el submenu y poder elegir el cafe perfecto
+	 * Param to get pefect coffee option of submenu
 	 * 
 	 */
 	private WebElement subMenuPerfectCoffee;
@@ -49,9 +54,8 @@ public class StarbucksHomePage extends BasePage {
 	private WebElement signIn;
 	
 	/**
-	 * Metodo para poder revisar las opciones del menu principal
-	 * del home de starbucks
-	 * @return
+	 * Method to get all options of main menu of starbucks
+	 * @return a list of string of all menu
 	 */
 	public List<String> mostrarMenu() {
 		List<String> todosMenus = new ArrayList<>();
@@ -64,8 +68,7 @@ public class StarbucksHomePage extends BasePage {
 	}
 	
 	/**
-	 * Metodo que utiliza para poder llegar a la pagina 
-	 * para elegir tu perfect coffee
+	 * Method to get of perfect coffe menu
 	 * @return
 	 */
 	public StarbucksPerfectCoffeePage gerPefectCoffee() {
@@ -88,6 +91,10 @@ public class StarbucksHomePage extends BasePage {
 		return new StarbucksPerfectCoffeePage(getDriver());
 		
 	}
+	/**
+	 * Method to get the signIn Page of starBucks
+	 * @return
+	 */
 	
 	public StarbucksSignInPage signIn() {
 		log.info("3.- entras a signIn");

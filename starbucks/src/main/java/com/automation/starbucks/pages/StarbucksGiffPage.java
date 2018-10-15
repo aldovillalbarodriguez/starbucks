@@ -12,7 +12,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.Test;
-
+/**
+ * Class of starbucks page to send gifts and send it
+ * @author aldo.villalba
+ *
+ */
 public class StarbucksGiffPage extends BasePage {
 	
 	Logger log = Logger.getLogger(StarbucksGiffPage.class);
@@ -22,31 +26,59 @@ public class StarbucksGiffPage extends BasePage {
 		// TODO Auto-generated constructor stub
 	}
 	
+	/**
+	 * Param to card Gift to send
+	 */
 	@FindBy(xpath="//a[@href='/gift/873069715']")
 	public WebElement cardGift;
-	
+	/**
+	 * Param to input text of reciptName
+	 */
 	@FindBy(xpath="//div[@class='field__inputWrapper flex']/input[@name='recipientName']")
 	public WebElement reciptName;
+	/**
+	 * Param to input text of reciptMail
+	 */
 	@FindBy(xpath="//div[@class='field__inputWrapper flex']/input[@name='recipientEmail']")
 	public WebElement reciptMail;
+	/**
+	 * Param to input text of message
+	 */
 	@FindBy(xpath="//div[@class='field__inputWrapper flex']/input[@name='message']")
 	public WebElement message;
+	/**
+	 * Param to validate of elemntos of form
+	 */
 	@FindBy(xpath="//div[@class='pt3 lg-pt5']/form")
 	public WebElement formFields;
+	/**
+	 * Param to button "Checkout" of page
+	 */
 	@FindBy(xpath="//div[@class='visible']/button[text()='Checkout']")	
 	public WebElement buttonCheout;
+	/**
+	 * Param to button send Gift
+	 */
 	@FindBy(xpath="//div[@class='visible']/button[text()='Send gift']")
 	public WebElement buttonSendGift;
-	
+	/**
+	 * Param to select one of page gift Send
+	 */
 	@FindBy(xpath="//select/option[@value='masterpass']")
 	public WebElement selectionMaster;
+	/**
+	 * Param to Button Continue  
+	 */
 	@FindBy(xpath="//div[@class='visible']/button[text()='Continue']")
 	public WebElement buttonContinue;
 	
 	
 	
 	
-	
+	/**
+	 * Method to fill the form to send card
+	 * @return
+	 */
 	public String getGiftCards() {
 		String giftCard = "";
 		
@@ -74,7 +106,10 @@ public class StarbucksGiffPage extends BasePage {
 		return giftCard;
 	}
 	
-	
+	/**
+	 * Method to verify that de button says "Continue"
+	 * @return Text of button
+	 */
 	public String getVerifyContinue() {
 		
 		String buttonSays ="";
@@ -85,7 +120,7 @@ public class StarbucksGiffPage extends BasePage {
 			getWait().until(ExpectedConditions.elementToBeClickable(buttonContinue));
 			buttonSays=buttonContinue.getText();
 			
-			log.info("que dice?"+buttonSays);
+			
 			
 			
 		} catch (Exception e) {
