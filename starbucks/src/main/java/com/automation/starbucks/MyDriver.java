@@ -10,21 +10,38 @@ private WebDriver driver;
 	
 	public MyDriver () {
 		String browser = System.getProperty("browser");
+		
+		String os = System.getProperty("os.name").toLowerCase();
+		
+		System.out.println("meustrame el sitema operativo>>"+os);
+		
+		String pipe = System.getProperty("file.separator");
 			
 		try {
 			
 			switch (browser) {
 
 			case "fireFox":
-				
-					System.setProperty("webdriver.gecko.driver", "src/test/resources/drivers/geckodriver.exe");
+					
+					if(os.contains("win")) {
+						System.setProperty("webdriver.gecko.driver", "src"+pipe+"test"+pipe+"resources"+pipe+"drivers"+pipe+"geckodriver.exe");
+					}
+					if(os.contains("mac")) {
+						System.setProperty("webdriver.gecko.driver", "src"+pipe+"test"+pipe+"resources"+pipe+"drivers"+pipe+"geckodriver");
+					}
+					
 					driver = new FirefoxDriver();
 				
 				break;
 				
 			case "chrome":
 				
-					System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver.exe");		
+					if(os.contains("win")) {
+						System.setProperty("webdriver.gecko.driver", "src"+pipe+"test"+pipe+"resources"+pipe+"drivers"+pipe+"chromedriver.exe");
+					}
+					if(os.contains("mac")) {
+						System.setProperty("webdriver.gecko.driver", "src"+pipe+"test"+pipe+"resources"+pipe+"drivers"+pipe+"chromedriver");
+					}	
 					driver = new ChromeDriver();
 				
 				

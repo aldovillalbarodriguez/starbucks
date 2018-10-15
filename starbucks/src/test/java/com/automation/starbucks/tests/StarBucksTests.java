@@ -22,37 +22,37 @@ public class StarBucksTests extends BaseTests {
 	
 	Logger log = Logger.getLogger(StarBucksTests.class);
 	
-//	@Test
-//	public void testStarBucks() {
-//		
-//		StarbucksHomePage starbucksMenu = getStarbucksPage();
-//		
-//		List<String> menusEsperados = new ArrayList<>();
-//		menusEsperados.add("COFFEE");
-//		menusEsperados.add("TEA");
-//		menusEsperados.add("MENU");
-//		menusEsperados.add("COFFEEHOUSE");
-//		menusEsperados.add("SOCIAL IMPACT");
-//		menusEsperados.add("STARBUCKS REWARDS");
-//		menusEsperados.add("BLOG");
-//		menusEsperados.add("GIFT CARDS");
-//		
-//		List<String> todosMenus = starbucksMenu.mostrarMenu();
-//		
-//		try {
-//				Assert.assertEquals(todosMenus, menusEsperados);				
-//			
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		
-//		
-//		
-//	}
+	@Test
+	public void testStarBucks() {
+		
+		StarbucksHomePage starbucksMenu = getStarbucksPage();
+		
+		List<String> menusEsperados = new ArrayList<>();
+		menusEsperados.add("COFFEE");
+		menusEsperados.add("TEA");
+		menusEsperados.add("MENU");
+		menusEsperados.add("COFFEEHOUSE");
+		menusEsperados.add("SOCIAL IMPACT");
+		menusEsperados.add("STARBUCKS REWARDS");
+		menusEsperados.add("BLOG");
+		menusEsperados.add("GIFT CARDS");
+		
+		List<String> todosMenus = starbucksMenu.mostrarMenu();
+		
+		try {
+				Assert.assertEquals(todosMenus, menusEsperados);				
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+	}
 	
 	@Test(dataProvider="testAllAnswers")
 	public void testFindPerfecCoffee (Integer numRespuesta) {
-		System.out.println("1.- entró al StarbucksPerfectCoffeePage");
+		
 		StarbucksHomePage starbucksMenu = getStarbucksPage();
 		StarbucksPerfectCoffeePage perfectCoffee= null;
 		String nombreUrl=""; 
@@ -82,7 +82,7 @@ public class StarBucksTests extends BaseTests {
 	
 	@Test()
 	public void giftCarts() {
-		log.info("2.- entró a la prueba giftCarts()");
+		
 		String verifySendGift ="Send gift";
 		String verifyContinue ="Continue";
 		String answerSendGift ="";
@@ -102,7 +102,7 @@ public class StarBucksTests extends BaseTests {
 		Assert.assertEquals(verifySendGift, answerSendGift);
 		Assert.assertEquals(verifyContinue, answerContinue);
 		
-		log.info("2.- finalizó al giftCarts");
+		
 	}
 	
 }
