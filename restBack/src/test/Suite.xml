@@ -1,0 +1,18 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="MySuiteRestBack" >
+
+	<!-- <parameter name = "browser" value="fireFox" />  -->
+	
+	<test name="MyTestRestBack">
+		<classes>
+		
+		<class name="com.globant.restBack.RestBackTest"></class>
+		<class name="com.globant.restBack.SearchGreyTest"></class>
+						
+		</classes>
+		
+
+	
+	</test>
+</suite>
