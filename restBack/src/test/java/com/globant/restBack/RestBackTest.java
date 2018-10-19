@@ -1,112 +1,136 @@
 package com.globant.restBack;
 
 import static io.restassured.RestAssured.get;
-import static io.restassured.RestAssured.given;
-import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchema;
 
-import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.httpclient.HttpStatus;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import io.restassured.response.Response;
-
+/**
+ * Class to run all Back test
+ *
+ * @author aldo.villalba
+ *
+ */
 public class RestBackTest extends BaseTest {
 	Logger log = Logger.getLogger(RestBackTest.class);
-	String urlResources = "https://jsonplaceholder.typicode.com";
+	JsonPlaceHolderPage placeHolderPage = new JsonPlaceHolderPage();
 
-	@Test(priority = 2)
+	/**
+	 * Method to exercise 1
+	 *
+	 * get the resource to geting up the endpoind and send the httpStatus
+	 *
+	 */
+
+	@Test(priority = 1, enabled = true)
 	public void backTestTraining() {
 		try {
-			Response response = get(urlResources);
-			Assert.assertTrue(response.getStatusCode() == 200);
-			System.out.println("show response >>" + response.getStatusCode());
+
+			placeHolderPage.getStatusResource();
+			Assert.assertEquals(get().statusCode(), HttpStatus.SC_OK);
+			log.info("Exercise 1 HttpStatus>>>" + get().statusCode());
+
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Erro RestBackTest.backTestTraining()", e);
 		}
 
 	}
 
-	@Test(dataProvider = "sendResources", priority = 1)
+	/**
+	 * Method to exercise 2.1 Validate schema of json of response a resource vs file
+	 * schema
+	 *
+	 * @param nameResources
+	 */
+	@Test(dataProvider = "sendResources", enabled = true, priority = 2)
 	public void backTestCase2(String nameResources) {
 
 		try {
-			InputStream file = getFileSquema(nameResources);
-			// hacer Assertrue
-			get(urlResources + "/" + nameResources).then().assertThat().body(matchesJsonSchema(file));
 
-		} catch (AssertionError e) {
-			Assert.fail(e.getMessage());
+			placeHolderPage.getStatusResource();
+
+			boolean isItRight = placeHolderPage.getValidationJson(nameResources);
+
+			Assert.assertTrue(isItRight);
+
+		} catch (Exception e) {
+			log.error("error RestBackTest.backTestCase2()", e);
 		}
 
 	}
 
+	/**
+	 * Method to set dataprovider to exercise 2.1
+	 *
+	 * @return
+	 */
 	@DataProvider(name = "sendResources")
 	public Object[][] sendResources() {
 
 		return new Object[][] { { "posts" }, { "comments" }, { "albums" }, { "photos" }, { "todos" }, { "users" } };
 	}
 
-	@Test(dataProvider = "sendIdResources", priority = 3)
+	/**
+	 * Exercise 2.2 get by id (20,50,100)resources to posts
+	 *
+	 * @param id
+	 * @param data
+	 */
+	@Test(dataProvider = "sendIdResources", enabled = true, priority = 3)
 	public void testGetid(String id, List<Object> data) {
-		List<Object> atributesHoped = new ArrayList<>();
 
-		Response responseed = given().param("id", id).when().get(urlResources + "/posts");
-		List<Object> userIdReponse = responseed.path("userId");
-		List<Object> idResponse = responseed.path("id");
-		List<Object> titleResponse = responseed.path("title");
-		List<Object> bodyResponse = responseed.path("body");
-		atributesHoped.add(userIdReponse.get(0));
-		atributesHoped.add(idResponse.get(0));
-		atributesHoped.add(titleResponse.get(0));
-		atributesHoped.add(bodyResponse.get(0));
-
-		log.info("class name>> testGetid>>" + responseed.asString());
-
-		Assert.assertEquals(data, atributesHoped);
+		placeHolderPage.getStatusResource();
+		Assert.assertEquals(data, placeHolderPage.getAtributes(id));
 
 	}
 
+	/**
+	 * Method to set dataprovider to exercise 2.2
+	 *
+	 * @return
+	 */
 	@DataProvider(name = "sendIdResources")
 	public Object[][] sendIdResources() {
 
-		List<Object> values20 = new ArrayList<>();
-		values20.add(2);
-		values20.add(20);
-		values20.add("doloribus ad provident suscipit at");
-		values20.add(
-				"qui consequuntur ducimus possimus quisquam amet similique\nsuscipit porro ipsam amet\neos veritatis officiis exercitationem vel fugit aut necessitatibus totam\nomnis rerum consequatur expedita quidem cumque explicabo");
+		placeHolderPage.getStatusResource();
 
-		List<Object> values50 = new ArrayList<>();
-		values50.add(5);
-		values50.add(50);
-		values50.add("repellendus qui recusandae incidunt voluptates tenetur qui omnis exercitationem");
-		values50.add(
-				"error suscipit maxime adipisci consequuntur recusandae\nvoluptas eligendi et est et voluptates\nquia distinctio ab amet quaerat molestiae et vitae\nadipisci impedit sequi nesciunt quis consectetur");
-
-		List<Object> values100 = new ArrayList<>();
-		values100.add(10);
-		values100.add(100);
-		values100.add("at nam consequatur ea labore ea harum");
-		values100.add(
-				"cupiditate quo est a modi nesciunt soluta\nipsa voluptas error itaque dicta in\nautem qui minus magnam et distinctio eum\naccusamus ratione error aut");
-
-		return new Object[][] { { "20", values20 }, { "50", values50 }, { "100", values100 } };
+		return new Object[][] { { "20", placeHolderPage.getDataToProvider("20") },
+				{ "50", placeHolderPage.getDataToProvider("50") },
+				{ "100", placeHolderPage.getDataToProvider("100") } };
 	}
 
-	@Test(priority = 4)
-	public void getExamples() {
-		Response responsePost = given().param("userId", 1).when().get(urlResources + "/posts");
-		Assert.assertNotNull(responsePost);
-		log.info("getExamples  responsePost  >>" + responsePost.asString());
+	/**
+	 * Method to exercise 2.3 call resources to posts by id 1
+	 */
+	@Test(enabled = true, priority = 4)
+	public void getIdPost() {
 
-		Response responseComents = given().param("postId", 1).when().get(urlResources + "/comments");
-		Assert.assertNotNull(responsePost);
-		log.info("getExamples  responseComents>>" + responseComents.asString());
+		try {
+			placeHolderPage.getStatusResource();
+			Assert.assertNotNull(placeHolderPage.getIdResource("posts", 1, "userId"));
+		} catch (Exception e) {
+			log.error("error RestBackTest.getIdPost()", e);
+		}
+
+	}
+
+	/**
+	 * Method to exercise 2.3 call resources to comments by id 1
+	 */
+	@Test(enabled = true, priority = 5)
+	public void getIdComents() {
+		try {
+			placeHolderPage.getStatusResource();
+			Assert.assertNotNull(placeHolderPage.getIdResource("comments", 1, "postId"));
+		} catch (Exception e) {
+			log.error("error RestBackTest.getIdComents()", e);
+		}
+
 	}
 
 }

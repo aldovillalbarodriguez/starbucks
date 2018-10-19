@@ -7,12 +7,17 @@
 	<test name="MyTestRestBack">
 		<classes> 
 		
-		<class name="com.globant.restBack.RestBackTest"></class>
-		<class name="com.globant.restBack.SearchGreyTest"></class>
-						
-		</classes>
+			<class name="com.globant.restBack.RestBackTest"></class>
 		
-
-	
+		</classes>	
 	</test>
+	
+	<test name="MyTestGrey">
+		<classes> 
+		
+			<class name="com.globant.restBack.SearchGreyTest"></class>			
+		 		
+		</classes>	
+	</test>
+	
 </suite>
