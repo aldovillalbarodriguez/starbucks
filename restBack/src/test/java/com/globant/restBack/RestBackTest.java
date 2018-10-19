@@ -19,7 +19,7 @@ public class RestBackTest extends BaseTest {
 	Logger log = Logger.getLogger(RestBackTest.class);
 	String urlResources = "https://jsonplaceholder.typicode.com";
 
-	@Test()
+	@Test(priority = 2)
 	public void backTestTraining() {
 		try {
 			Response response = get(urlResources);
@@ -31,12 +31,12 @@ public class RestBackTest extends BaseTest {
 
 	}
 
-	@Test(dataProvider = "sendResources")
+	@Test(dataProvider = "sendResources", priority = 1)
 	public void backTestCase2(String nameResources) {
 
 		try {
 			InputStream file = getFileSquema(nameResources);
-
+			// hacer Assertrue
 			get(urlResources + "/" + nameResources).then().assertThat().body(matchesJsonSchema(file));
 
 		} catch (AssertionError e) {
@@ -51,7 +51,7 @@ public class RestBackTest extends BaseTest {
 		return new Object[][] { { "posts" }, { "comments" }, { "albums" }, { "photos" }, { "todos" }, { "users" } };
 	}
 
-	@Test(dataProvider = "sendIdResources")
+	@Test(dataProvider = "sendIdResources", priority = 3)
 	public void testGetid(String id, List<Object> data) {
 		List<Object> atributesHoped = new ArrayList<>();
 
@@ -98,7 +98,7 @@ public class RestBackTest extends BaseTest {
 		return new Object[][] { { "20", values20 }, { "50", values50 }, { "100", values100 } };
 	}
 
-	@Test
+	@Test(priority = 4)
 	public void getExamples() {
 		Response responsePost = given().param("userId", 1).when().get(urlResources + "/posts");
 		Assert.assertNotNull(responsePost);

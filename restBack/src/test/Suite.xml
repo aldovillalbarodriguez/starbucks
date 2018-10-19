@@ -5,7 +5,7 @@
 	<!-- <parameter name = "browser" value="fireFox" />  -->
 	
 	<test name="MyTestRestBack">
-		<classes>
+		<classes> 
 		
 		<class name="com.globant.restBack.RestBackTest"></class>
 		<class name="com.globant.restBack.SearchGreyTest"></class>
